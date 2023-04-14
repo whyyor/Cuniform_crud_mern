@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getBlogs } from "./actions/blogActions";
+import React from "react";
+import { Container } from "react-bootstrap";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogList from "./components/BlogList";
-import { Container, Col } from "react-bootstrap";
+import CreateBlog from "./components/createBlog";
 
 function App() {
-  const dispatch = useDispatch();
-  const blogs = useSelector((state) => state.blogs);
-  let firstBlog = blogs[0];
-
-  useEffect(() => {
-    dispatch(getBlogs());
-  }, [dispatch]);
-
-
   return (
-    <Container className="d-flex flex-column align-items-center py-3">
-      <h1>All Blogs</h1>
-      <Col xs={12}>
-        <BlogList blogs={blogs.blogs} />
-      </Col>
-    </Container>
+    <BrowserRouter>
+      <Container className="d-flex flex-column align-items-center py-3">
+        <h1>Blogs</h1>
+      </Container>
+      <Routes>
+        <Route path="/" element={<BlogList />} />
+        <Route path="/create-blog" element={<CreateBlog />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+

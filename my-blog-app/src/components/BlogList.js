@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
-import Blog from "./Blog";
+import { getBlogs } from "../actions/blogActions";
 import { Button, Card } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteBlog, updateBlog } from "../actions/blogActions";
 
-const BlogList = ({ blogs }) => {
+const BlogList = () => {
   const dispatch = useDispatch();
+  const blogs = useSelector((state) => state.blogs);
+  const location = useLocation();
 
   const handleDelete = (id) => {
     dispatch(deleteBlog(id));
@@ -16,12 +20,21 @@ const BlogList = ({ blogs }) => {
   };
 
   useEffect(() => {
-    console.log(blogs.map((blog) => `${blog.id}`));
+    console.log(blogs.blogs.map((blog) => `${blog.id}`));
   }, [blogs]);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, [dispatch, blogs]);
 
   return (
     <div>
-      {blogs.map((blog) => (
+      {location.pathname !== "/create-blog" && (
+        <Link to="/create-blog">
+          <Button variant="primary">Create Blog</Button>
+        </Link>
+      )}
+      {blogs.blogs.map((blog) => (
         <Card key={blog.id} className="my-3">
           <Card.Body>
             <div className="d-flex justify-content-between align-items-center">
