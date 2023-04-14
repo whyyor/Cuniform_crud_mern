@@ -1,11 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Blog = require("./models/Blog");
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
 app.use(express.json());
 //this will help us parse json so that we can access variables
+
+app.use(cors());
 
 mongoose.connect(process.env.MONGO_URL);
 
