@@ -15,12 +15,7 @@ function App() {
   return (
     <div className="App">
       <h1>All Blogs</h1>
-      {blogs.blogs.map((blog) => (
-        <div key={blog.id}>
-          <h3>{blog.title}</h3>
-          <p>{blog.description}</p>
-        </div>
-      ))}
+      <BlogList blogs={blogs.blogs} />
     </div>
   );
 }
