@@ -43,8 +43,8 @@ const EditBlog = () => {
   };
 
   return (
-    <div>
-      <h1>Edit Blog</h1>
+<div style={{ width: "60%" }} className="mx-auto">
+      <h1 className="my-4">Edit Blog</h1>
       {blog ? (
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formTitle">
@@ -62,7 +62,8 @@ const EditBlog = () => {
           <Form.Group controlId="formDescription">
             <Form.Label>Description</Form.Label>
             <Form.Control
-              type="text"
+              as="textarea"
+              rows={4}
               placeholder="Enter description"
               name="description"
               value={description}

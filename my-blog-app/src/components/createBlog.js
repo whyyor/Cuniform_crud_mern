@@ -27,7 +27,7 @@ const CreateBlog = () => {
   };
 
   return (
-    <div>
+<div style={{ width: "60%" }} className="mx-auto">
       <h1>Create Blog</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formTitle">
