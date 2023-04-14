@@ -20,10 +20,6 @@ const BlogList = () => {
   };
 
   useEffect(() => {
-    console.log(blogs.blogs.map((blog) => `${blog.id}`));
-  }, [blogs]);
-
-  useEffect(() => {
     dispatch(getBlogs());
   }, [dispatch, blogs]);
 
@@ -45,19 +41,11 @@ const BlogList = () => {
                 </Card.Subtitle>
               </div>
               <div>
-                <Button
-                  variant="outline-primary"
-                  className="mx-2"
-                  onClick={() =>
-                    handleUpdate(blog.id, {
-                      title: "New Title",
-                      description: "New Description",
-                      category: "New Category",
-                    })
-                  }
-                >
-                  Edit
-                </Button>
+                <Link to={`/edit-blog/${blog.id}`}>
+                  <Button variant="outline-primary" className="mx-2">
+                    Edit
+                  </Button>
+                </Link>
                 <Button
                   variant="outline-danger"
                   onClick={() => handleDelete(blog.id)}
